@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_view"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_view"
+        android:title="전체"></item>
+
+    <item
+        android:id="@+id/action_calendar"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_calendar"
+        android:title="달력"></item>
+
+    <item
+        android:id="@+id/action_plus"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_plus"
+        android:title="추가"></item>
+
+    <item
+        android:id="@+id/action_graph"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_graph"
+        android:title="통계"></item>
+
+    <item
+        android:id="@+id/action_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings"
+        android:title="더보기"></item>
+</menu>
