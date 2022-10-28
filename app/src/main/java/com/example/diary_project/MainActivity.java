@@ -27,13 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
-    private FragmentManager fm;
-    private FragmentTransaction ft;
-    private Frag1 frag1;
-    private Frag2 frag2;
-    private Frag3 frag3;
-    private Frag4 frag4;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
 
-        frag1 = new Frag1();
-        frag2 = new Frag2();
-        frag3 = new Frag3();
-        frag4 = new Frag4();
-        setFrag(2);  //첫 프래그먼트 화면을 뭐로 지정할지 선택
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         /*Button btn_logout = findViewById(R.id.btn_logout);
@@ -62,56 +50,29 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
          */
-
+        bottomNavigationView = findViewById(R.id.rv_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch(item.getItemId()){
                     case R.id.action_view:
-                        setFrag(0);
-                        break;
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        return true;
                     case R.id.action_calendar:
-                        setFrag(1);
-                        break;
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        return true;
                     case R.id.action_plus:
-                        setFrag(2);
-                        break;
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        return true;
                     case R.id.action_graph:
-                        setFrag(3);
-                        break;
-
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        //overridePendingTransition(0, 0); 애니메이션 효과 추가
+                        return true;
                 }
-                return true;
+                return false;
             }
         });
 
     }
-
-
-    //프래그먼트 교체가 일어나는 실행문
-    private void setFrag(int n){
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
-        switch (n){
-            case 0:
-                ft.replace(R.id.main_frame, frag1);
-                ft.commit();
-                break;
-            case 1:
-                ft.replace(R.id.main_frame, frag2);
-                ft.commit();
-                break;
-            case 2:
-                ft.replace(R.id.main_frame, frag3);
-                ft.commit();
-                break;
-            case 3:
-                ft.replace(R.id.main_frame, frag4);
-                ft.commit();
-                break;
-        }
-    }
-
 }

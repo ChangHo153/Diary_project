@@ -36,7 +36,7 @@ public class CustomAdpter extends RecyclerView.Adapter<CustomAdpter.ViewHolder> 
     @Override
     public CustomAdpter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //뷰연결
-        View holder = LayoutInflater.from(parent.getContext()).inflate(R.layout.frag1_item_list,parent,false);
+        View holder = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_list,parent,false);
         return new ViewHolder(holder);
     }
 
