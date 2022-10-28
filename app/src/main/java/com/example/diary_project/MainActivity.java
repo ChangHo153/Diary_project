@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private Frag2 frag2;
     private Frag3 frag3;
     private Frag4 frag4;
-    private Frag5 frag5;
 
 
     @Override
@@ -41,15 +40,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         bottomNavigationView = findViewById(R.id.bottomNavi);
 
         frag1 = new Frag1();
         frag2 = new Frag2();
         frag3 = new Frag3();
         frag4 = new Frag4();
-        frag5 = new Frag5();
         setFrag(2);  //첫 프래그먼트 화면을 뭐로 지정할지 선택
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -85,10 +81,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_graph:
                         setFrag(3);
                         break;
-                    case R.id.action_settings:
-                        setFrag(4);
-                        break;
-
 
                 }
                 return true;
@@ -117,10 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 3:
                 ft.replace(R.id.main_frame, frag4);
-                ft.commit();
-                break;
-            case 4:
-                ft.replace(R.id.main_frame, frag5);
                 ft.commit();
                 break;
         }

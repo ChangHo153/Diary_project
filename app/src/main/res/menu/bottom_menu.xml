@@ -25,9 +25,4 @@
         android:icon="@drawable/ic_baseline_graph"
         android:title="통계"></item>
 
-    <item
-        android:id="@+id/action_settings"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_settings"
-        android:title="더보기"></item>
 </menu>

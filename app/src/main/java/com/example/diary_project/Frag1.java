@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
@@ -23,68 +25,54 @@ import java.util.Date;
 
 public class Frag1 extends Fragment {
     private View view;
-    private FloatingActionButton mBtn_write;
+    private BottomNavigationView bottomNavigationView;
     private RecyclerView mRv_todo;
-
     private ArrayList<TodoItem> mTodoItems;
     private DBHepler mDBHelper;
     private CustomAdpter mAdaptr;
 
-    @Nullable
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag1, container, false);
-        //mBtn_write = view.findViewById(R.id.action_plus);
-        mBtn_write = view.findViewById(R.id.floatingActionButton2);
-        // load recent DB
-        setInit();
-
 
         return  view;
     }
 
     private void setInit() {
-        mDBHelper = new DBHepler(getActivity());
+        mDBHelper = new DBHepler(getActivity());//this
         mRv_todo = view.findViewById(R.id.rv_view);
-
+        bottomNavigationView = view.findViewById(R.id.action_view);
         mTodoItems = new ArrayList<>();
 
-        //안녕하세요~
         loadRecentDB();
 
-        mBtn_write.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //팝업창 띄우기
-                Log.d("정보","000000 여기");
+
                 Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_Material_Light_Dialog);
                 dialog.setContentView(R.layout.dialog_edit);
                 EditText et_title = dialog.findViewById(R.id.et_title);
-                Log.d("정보","-1111111111 여기");
                 EditText et_content = dialog.findViewById(R.id.et_content);
                 Button btn_ok = dialog.findViewById(R.id.btn_ok);
-                Log.d("정보","-22222222222 여기");
+
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d("정보","111111 여기");
                         //프로그램상에 있는 현재 시간과 날짜를 가져오는 함수
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//현재 시간 월일시 받아오기
 
                         mDBHelper.InsertTodo(et_title.getText().toString(), et_content.getText().toString(),currentTime);
-                        Log.d("정보","2222222222 여기");
                         // Insert UI
                         TodoItem item = new TodoItem();
                         item.setTitle(et_title.getText().toString());
                         item.setContent(et_content.getText().toString());
                         item.setWriteDate(currentTime);
 
-                        Log.d("정보","33333333 여기");
                         mAdaptr.addItem(item);
                         mRv_todo.smoothScrollToPosition(0);   //작성이 쌓을때마나 스크롤도 같이 올라가는
                         dialog.dismiss();
-                        Toast.makeText(getActivity(), "할일 목록에 추가 되었습니다", Toast.LENGTH_SHORT).show();
-                        Log.d("정보","4444444444444ㅅ 여기");
+                        Toast.makeText(getActivity(), "할일 목록에 추가 되었습니다", Toast.LENGTH_SHORT).show();  //MainActivity.this
                     }
                 });
 
