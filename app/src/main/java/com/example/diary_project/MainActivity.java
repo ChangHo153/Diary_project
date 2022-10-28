@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottomNavi);
-
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         /*Button btn_logout = findViewById(R.id.btn_logout);
@@ -51,22 +49,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
          */
-        bottomNavigationView = findViewById(R.id.rv_view);
+        bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case R.id.action_view:
-                        startActivity(new Intent(MainActivity.this, MainActivity.class));
-                        return true;
                     case R.id.action_calendar:
-                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        break;
+                    case R.id.action_view:
+                        startActivity(new Intent(MainActivity.this, ViewActivity.class));
                         return true;
                     case R.id.action_plus:
-                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        startActivity(new Intent(MainActivity.this, ViewActivity.class));
                         return true;
                     case R.id.action_graph:
-                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        startActivity(new Intent(MainActivity.this, ViewActivity.class));
                         //overridePendingTransition(0, 0); 애니메이션 효과 추가
                         return true;
                 }
