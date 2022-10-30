@@ -24,7 +24,7 @@ public class CalendarActivity extends AppCompatActivity {
     private RecyclerView mRv_todo;
     private ArrayList<TodoItem> mTodoItems;
     private DBHepler mDBHelper;
-    private CustomAdpter mAdaptr;
+    private ViewCustomAdpter mAdaptr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +111,7 @@ public class CalendarActivity extends AppCompatActivity {
         // 저장되어있던 DB를 가져온다
         mTodoItems = mDBHelper.getTodoList();
         if(mAdaptr ==null){
-            mAdaptr= new CustomAdpter(mTodoItems, CalendarActivity.this);
+            mAdaptr= new ViewCustomAdpter(mTodoItems, CalendarActivity.this);
             mRv_todo.setHasFixedSize(true);   //리사이트뷰 성능강와 뭔진 모른다함
             mRv_todo.setAdapter(mAdaptr);
         }

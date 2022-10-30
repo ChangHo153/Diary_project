@@ -19,14 +19,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CustomAdpter extends RecyclerView.Adapter<CustomAdpter.ViewHolder> {
+public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.ViewHolder> {
 
     private ArrayList<TodoItem> mTodoItems;
     private Context mContext;
     private DBHepler mDBHelper;
 
 
-    public CustomAdpter(ArrayList<TodoItem> mTodoItems, Context mContext) {
+    public ViewCustomAdpter(ArrayList<TodoItem> mTodoItems, Context mContext) {
         this.mTodoItems = mTodoItems;
         this.mContext = mContext;
         mDBHelper = new DBHepler(mContext);
@@ -34,14 +34,14 @@ public class CustomAdpter extends RecyclerView.Adapter<CustomAdpter.ViewHolder> 
 
     @NonNull
     @Override
-    public CustomAdpter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewCustomAdpter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //뷰연결
         View holder = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_list,parent,false);
         return new ViewHolder(holder);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdpter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewCustomAdpter.ViewHolder holder, int position) {
         holder.tv_title.setText(mTodoItems.get(position).getTitle());
         holder.tv_content.setText(mTodoItems.get(position).getContent());
         holder.tv_writeDate.setText(mTodoItems.get(position).getWriteDate());
