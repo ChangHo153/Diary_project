@@ -1,12 +1,12 @@
 package com.example.diary_project;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,15 +33,14 @@ public class ViewActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.action_calendar:
                         startActivity(new Intent(ViewActivity.this, MainActivity.class));
+                        finish();
                         return true;
                     case R.id.action_view:
                         break;
-                    case R.id.action_plus:
-                        startActivity(new Intent(ViewActivity.this, MainActivity.class));
-                        return true;
                     case R.id.action_graph:
-                        startActivity(new Intent(ViewActivity.this, MainActivity.class));
+                        startActivity(new Intent(ViewActivity.this, GraphActivity.class));
                         //overridePendingTransition(0, 0); 애니메이션 효과 추가
+                        finish();
                         return true;
                 }
                 return false;

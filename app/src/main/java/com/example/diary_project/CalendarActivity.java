@@ -38,23 +38,13 @@ public class CalendarActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.action_view:
-                        startActivity(new Intent(getApplicationContext()
-                                , MainActivity.class));
-
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         return true;
                     case R.id.action_calendar:
-                        startActivity(new Intent(getApplicationContext()
-                                , MainActivity.class));
-
-                        return true;
-                    case R.id.action_plus:
-                        startActivity(new Intent(getApplicationContext()
-                                , MainActivity.class));
-
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         return true;
                     case R.id.action_graph:
-                        startActivity(new Intent(getApplicationContext()
-                                , MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         //overridePendingTransition(0, 0); 애니메이션 효과 추가
                         return true;
                 }
