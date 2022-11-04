@@ -106,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //날짜 타입 설정 0월 0000년
+    //날짜 타입 설정 0000년 0월
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String monthYearFromDate(Calendar calendar){
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
 
-        String monthYear = month + "-" + year;
+        String monthYear = year+ " 년 "  + month+ " 월";
         return monthYear;
     }
 
