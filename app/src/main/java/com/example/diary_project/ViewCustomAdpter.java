@@ -80,11 +80,18 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                         public void onClick(DialogInterface dialogInterface, int position) {
                             if (position == 0){
                                 //수정하기
+                                //팝업창 띄우기
                                 Dialog dialog = new Dialog(mContext, android.R.style.Theme_Material_Light_Dialog);
                                 dialog.setContentView(R.layout.dialog_edit);
                                 EditText et_title = dialog.findViewById(R.id.et_title);
                                 EditText et_content = dialog.findViewById(R.id.et_content);
                                 Button btn_ok = dialog.findViewById(R.id.btn_ok);
+
+                                et_title.setText(todoItem.getTitle());
+                                et_content.setText(todoItem.getContent());
+                                // 커서를 글자의 마지막으로 이동
+                                et_title.setSelection(et_title.getText().length());
+
                                 btn_ok.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {

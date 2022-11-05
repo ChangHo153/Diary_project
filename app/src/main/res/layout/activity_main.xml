@@ -131,8 +131,13 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/dayofweek"/>
+        app:layout_constraintTop_toBottomOf="@id/dayofweek">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
     <LinearLayout
+        android:id="@+id/layout_bottmNavi"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -146,5 +151,6 @@
             app:menu="@menu/bottom_menu"
             android:layout_gravity="bottom"
             app:labelVisibilityMode="labeled" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

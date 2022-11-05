@@ -21,11 +21,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     TextView monthYearText; //년월 텍스트뷰
     RecyclerView recyclerView;
     public static Calendar selectedDate; //년월 변수
+    private ArrayList<TodoItem> mTodoItems;
 
     private FirebaseAuth mFirebaseAuth;
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
@@ -116,13 +117,6 @@ public class MainActivity extends AppCompatActivity {
         return monthYear;
     }
 
-/*    //날짜 타입 설정 0000년 0 0월
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private String yearMonthFromDate(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월");
-        return date.format(formatter);
-    }*/
-
     //화면 설정
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setMonthView(){
@@ -132,8 +126,9 @@ public class MainActivity extends AppCompatActivity {
         //해당 월 날짜 가져오기
         ArrayList<Date> dayList = daysInMonthArray();
 
+
         //어뎁터 데이터 적용
-        CalendarAdapter adapter = new CalendarAdapter(dayList);
+        MainAdapter adapter = new MainAdapter(dayList,MainActivity.this);
 
         //레이아웃 설정 (열 7개)
         RecyclerView.LayoutManager manager = new GridLayoutManager(getApplicationContext(), 7);
@@ -173,4 +168,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return dayList;
     }
+
+//    @Override
+//    public void onItemClick() {
+//        mDBHelper = new DBHepler(this);//this
+//        mRv_todo = findViewById(R.id.rv_view);
+//        mTodoItems = new ArrayList<>();
+//
+//        Dialog dialog = new Dialog(MainActivity.this, android.R.style.Theme_Material_Light_Dialog);
+//        dialog.setContentView(R.layout.dialog_edit);
+//        EditText et_title = dialog.findViewById(R.id.et_title);
+//        EditText et_content = dialog.findViewById(R.id.et_content);
+//        Button btn_ok = dialog.findViewById(R.id.btn_ok);
+//    }
 }
