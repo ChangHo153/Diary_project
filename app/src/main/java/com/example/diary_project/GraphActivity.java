@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
@@ -111,7 +110,7 @@ public class GraphActivity extends AppCompatActivity {
         pieChart.setData(pieData);
         pieChart.invalidate();
 
-        pieChart.animateY(1400, Easing.EaseInOutQuad);  //애니효과
+        //pieChart.animateY(1400, Easing.EaseInOutQuad);  //애니효과
 
     }
 }
