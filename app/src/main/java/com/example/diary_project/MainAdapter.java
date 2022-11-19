@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
     private ArrayList<Date> dayList;
     private DBHepler mDBHelper;
     private Context mContext;
+    private int icon = 0;
 
     public MainAdapter(ArrayList<Date> dayList,Context mContext){
         this.dayList = dayList;
@@ -98,6 +101,66 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                     EditText et_title = dialog.findViewById(R.id.et_title);
                     EditText et_content = dialog.findViewById(R.id.et_content);
                     Button btn_ok = dialog.findViewById(R.id.btn_ok);
+                    ImageButton imgbtn_pleasure =dialog.findViewById(R.id.imgbtn_pleasure);
+                    ImageButton imgbtn_anger = dialog.findViewById(R.id.imgbtn_anger);
+                    ImageButton imgbtn_sad=dialog.findViewById(R.id.imgbtn_sad);
+                    ImageButton imgbtn_joy= dialog.findViewById(R.id.imgbtn_joy);
+                    ImageButton imgbtn_love=dialog.findViewById(R.id.imgbtn_love);
+                    ImageButton imgbtn_hatred=dialog.findViewById(R.id.imgbtn_hatred);
+                    ImageButton imgbtn_craving=dialog.findViewById(R.id.imgbtn_craving);
+
+
+                    //기쁨이벤트
+                    imgbtn_pleasure.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            icon = 0;
+                        }
+                    });
+
+                    //화남
+                    imgbtn_anger.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            icon = 1;
+                        }
+                    });
+
+                    //슬픔
+                    imgbtn_sad.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            icon = 2;
+                        }
+                    });
+                    //즐거움
+                    imgbtn_joy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            icon = 3;
+                        }
+                    });
+                    //사랑
+                    imgbtn_love.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            icon = 4;
+                        }
+                    });
+                    //증오
+                    imgbtn_hatred.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            icon = 5;
+                        }
+                    });
+                    //욕망
+                    imgbtn_craving.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            icon = 6;
+                        }
+                    });
 
                     btn_ok.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -105,17 +168,23 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                             //프로그램상에 있는 현재 시간과 날짜를 가져오는 함수
                             //Insert Database
                             String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//현재 시간 월일시 받아오기
-                            mDBHelper.InsertTodo(et_title.getText().toString(), et_content.getText().toString(),currentTime);
+
+
+                            mDBHelper.InsertTodo(et_title.getText().toString(), et_content.getText().toString(),currentTime, icon);
 
                             // Insert UI
                             TodoItem item = new TodoItem();
                             item.setTitle(et_title.getText().toString());
                             item.setContent(et_content.getText().toString());
                             item.setWriteDate(currentTime);
+                            item.setIcon(icon);
 
                             mTodoItems.add(item);
                             dialog.dismiss();
                             Toast.makeText(mContext, "할일 목록에 추가 되었습니다", Toast.LENGTH_SHORT).show();  //MainActivity.this
+
+
+
                         }
                     });
                     dialog.show();
@@ -141,12 +210,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
         TextView tv_title;
         TextView tv_content;
         TextView tv_writeDate;
+        ImageView iv_icon;
 
         public CalendarViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_content = itemView.findViewById(R.id.tv_content);
             tv_writeDate = itemView.findViewById(R.id.tv_date);
+
+            iv_icon = itemView.findViewById(R.id.iv_icon);
 
             mRv_todo = itemView.findViewById(R.id.rv_view);
 

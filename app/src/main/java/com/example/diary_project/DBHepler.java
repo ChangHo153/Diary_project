@@ -20,10 +20,11 @@ public class DBHepler extends SQLiteOpenHelper { // db관리를 도와주는 클
     public void onCreate(SQLiteDatabase db) {
         //데이터 베이스가 생성될 때 호출
         //데이터베이스 -> 테이블 ->컬럼 -> 값
-        db.execSQL("CREATE TABLE IF NOT EXISTS TodoList(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT NOT NULL, writeDate TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS TodoList(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT NOT NULL,iocn INTEGER NOT NULL,writeDate TEXT NOT NULL)");
         //테이블이 없을시 테이블 생성 기본키 생성시마다 아이디가 증가 옵션 추가 그 뒤는 title 변수에 string(text) 값을 넣는데 비면X
 
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -43,12 +44,15 @@ public class DBHepler extends SQLiteOpenHelper { // db관리를 도와주는 클
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
                 String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                 String content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
+                int iocn = cursor.getInt(cursor.getColumnIndexOrThrow("iocn"));
                 String writeDate = cursor.getString(cursor.getColumnIndexOrThrow("writeDate"));
+
 
                 TodoItem todoItem = new TodoItem();
                 todoItem.setId(id);
                 todoItem.setTitle(title);
                 todoItem.setContent(content);
+                todoItem.setIcon(iocn);
                 todoItem.setWriteDate(writeDate);
                 todoItems.add(todoItem);
             }
@@ -59,15 +63,15 @@ public class DBHepler extends SQLiteOpenHelper { // db관리를 도와주는 클
     }
 
     // INSERT문 (할일 목록을 DB에 넣는다.
-    public void InsertTodo(String _title,String _content, String _writeDate){
+    public void InsertTodo(String _title,String _content, String _writeDate, int _iocn){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO TodoList(title, content, writeDate) VALUES('"+ _title+"', '"+ _content+"', '"+ _writeDate+"');");
+        db.execSQL("INSERT INTO TodoList(title, content,iocn ,writeDate) VALUES('"+ _title+"', '"+ _content+"',"+_iocn+" ,'"+ _writeDate+"');");
     }
 
     //UPDATE문 (할일 목록을 수정한다)
-    public  void UpdateTodo(String _title,String _content, String _writeDate, String _beforeDate){
+    public  void UpdateTodo(String _title,String _content,int _iocn ,String _writeDate, String _beforeDate){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE TodoList SET title='"+_title +"',content='"+_content +"',writeDate='"+_writeDate +"' where writeDate='"+_beforeDate +"'");
+        db.execSQL("UPDATE TodoList SET title='"+_title +"',content='"+_content +"',iocn="+_iocn+" ,writeDate='"+_writeDate +"' where writeDate='"+_beforeDate +"'");
     }
 
     //DELETE문 (할일 목록을 제거한다)

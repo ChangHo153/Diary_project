@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,26 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
         holder.tv_title.setText(mTodoItems.get(position).getTitle());
         holder.tv_content.setText(mTodoItems.get(position).getContent());
         holder.tv_writeDate.setText(mTodoItems.get(position).getWriteDate());
+
+        // 기분에 따라 아이콘 사진 변경!
+        int icon = mTodoItems.get(position).getIcon();
+        if(icon == 0)
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_pleasure);
+        else if(icon == 1)
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_angry);
+        else if(icon == 2)
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_sad);
+        else if(icon == 3)
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_joy);
+        else if(icon == 4)
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_love);
+        else if(icon == 5)
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_hatred);
+        else if(icon == 6)
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_craving);
+        else
+            holder.iv_icon.setImageResource(R.mipmap.ic_launcher_pleasure);
+
     }
 
     @Override
@@ -57,13 +78,14 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
         private TextView tv_title;
         private TextView tv_content;
         private TextView tv_writeDate;
+        private ImageView iv_icon;
         public ViewHolder(@NonNull View itemView) {
-
             super(itemView);
 
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_content = itemView.findViewById(R.id.tv_content);
             tv_writeDate = itemView.findViewById(R.id.tv_date);
+            iv_icon = itemView.findViewById(R.id.iv_icon);
 
             //하나의 아이템뷰를 터치시 수정가능
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +94,7 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                     int curPos = getAdapterPosition();      //현재 선택한 리스트 아이템 위치
                     TodoItem todoItem = mTodoItems.get(curPos);  // 선택한 아이템 값들
 
-                    String[] strChoiceItems= {"수정하기","삭제하기"};
+                    String[] strChoiceItems= {"수정하기","삭제하기","공유하기"};
                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                     builder.setTitle("원하는 작업을 선택해 주세요");
                     builder.setItems(strChoiceItems, new DialogInterface.OnClickListener() {
@@ -100,13 +122,15 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                                         String content = et_content.getText().toString();
                                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//현재 시간 월일시 받아오기
                                         String beforeTime = todoItem.getWriteDate();  //이전에 작성한 시간
+                                        int iconNum = todoItem.getIcon();
 
-                                        mDBHelper.UpdateTodo(title, content, currentTime, beforeTime);
+                                        mDBHelper.UpdateTodo(title, content, iconNum,currentTime,beforeTime);
 
                                         // update UI
                                         todoItem.setTitle(title);
                                         todoItem.setContent(content);
                                         todoItem.setWriteDate(currentTime);
+                                        todoItem.setIcon(iconNum);
                                         notifyItemChanged(curPos, todoItem);
                                         dialog.dismiss();
                                         Toast.makeText(mContext, "목록 수정이 완료 되었습니다", Toast.LENGTH_SHORT).show();
@@ -125,6 +149,10 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                                 mTodoItems.remove(curPos);
                                 notifyItemRemoved(curPos);
                                 Toast.makeText(mContext, "목록이 제거 되었습니다", Toast.LENGTH_SHORT).show();
+
+                            }
+                            //공융하기
+                            else if(position == 2){
 
                             }
                         }
