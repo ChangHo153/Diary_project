@@ -21,11 +21,10 @@ import java.net.Socket;
 public class InquiryActivity extends AppCompatActivity{
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     EditText addressInput; //호스트 IP 입력상자
-    EditText et_title;   // 서버로 전송할 데이터 제목
     EditText et_content; // 서버로 전송할 데이터 입력상자
     Button btn_ok;
-    String str;
-    String addr="192.168.250.237";
+    String str,str1;
+    String addr="192.168.50.120";
     int port = 4455; //포트 번호는 서버측과 똑같이
     String response; //서버 응답
 
@@ -37,7 +36,6 @@ public class InquiryActivity extends AppCompatActivity{
         setContentView(R.layout.activity_inquiry);
 
         et_content = findViewById(R.id.et_content);
-        et_title = findViewById(R.id.et_title);
         btn_ok = findViewById(R.id.btn_ok);
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
@@ -70,9 +68,9 @@ public class InquiryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //addr = "ip주소";
-
                 str = et_content.getText().toString();
-                SocketThread thread = new SocketThread(addr, str);
+                SocketThread thread = new SocketThread(addr,str);
+                et_content.setText(null);
                 thread.start();
             }
         });
@@ -82,6 +80,7 @@ public class InquiryActivity extends AppCompatActivity{
 
         String host; // 서버 IP
         String data; // 전송 데이터
+        String tetle;
 
         public SocketThread(String host, String data){
             this.host = host;
@@ -105,7 +104,7 @@ public class InquiryActivity extends AppCompatActivity{
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(InquiryActivity.this, "서버 응답 : " + response, Toast.LENGTH_LONG).show();
+                        Toast.makeText(InquiryActivity.this, "전송이 완료되었습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
 
