@@ -14,9 +14,9 @@
         android:title="달력"></item>
 
     <item
-        android:id="@+id/action_graph"
+        android:id="@+id/action_inquiry"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_graph"
-        android:title="통계"></item>
+        android:title="문의"></item>
 
 </menu>

@@ -79,4 +79,5 @@ public class DBHepler extends SQLiteOpenHelper { // db관리를 도와주는 클
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM TodoList WHERE writeDate='"+ _beforeDate +"'");
     }
+
 }

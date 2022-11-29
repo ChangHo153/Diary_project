@@ -47,7 +47,7 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
         holder.tv_content.setText(mTodoItems.get(position).getContent());
         holder.tv_writeDate.setText(mTodoItems.get(position).getWriteDate());
 
-        // 기분에 따라 아이콘 사진 변경!
+        // 아이콘 사진 번경
         int icon = mTodoItems.get(position).getIcon();
         if(icon == 0)
             holder.iv_icon.setImageResource(R.mipmap.ic_launcher_pleasure);

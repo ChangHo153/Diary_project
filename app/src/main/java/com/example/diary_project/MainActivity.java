@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity{
                         startActivity(new Intent(MainActivity.this, ViewActivity.class));
                         finish();
                         return true;
-                    case R.id.action_graph:
-                        startActivity(new Intent(MainActivity.this, GraphActivity.class));
+                    case R.id.action_inquiry:
+                        startActivity(new Intent(MainActivity.this, InquiryActivity.class));
                         finish();
                         //overridePendingTransition(0, 0); 애니메이션 효과 추가
                         return true;

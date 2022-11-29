@@ -152,7 +152,9 @@
                 android:scrollbarStyle="insideInset"
                 android:scrollbars="vertical"
                 android:scrollHorizontally="false"
-                android:singleLine="true"></com.google.android.material.textfield.TextInputEditText>
+                android:singleLine="true">
+
+            </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
