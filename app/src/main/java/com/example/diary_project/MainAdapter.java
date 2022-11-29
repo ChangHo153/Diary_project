@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,7 +115,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                     imgbtn_pleasure.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             icon = 0;
+                            Log.d("dd", String.valueOf(icon));
                         }
                     });
 
@@ -123,6 +126,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                         @Override
                         public void onClick(View view) {
                             icon = 1;
+                            Log.d("dd", String.valueOf(icon));
                         }
                     });
 
@@ -131,6 +135,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                         @Override
                         public void onClick(View view) {
                             icon = 2;
+                            Log.d("dd", String.valueOf(icon));
                         }
                     });
                     //즐거움
@@ -138,6 +143,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                         @Override
                         public void onClick(View view) {
                             icon = 3;
+                            Log.d("dd", String.valueOf(icon));
                         }
                     });
                     //사랑
@@ -145,6 +151,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                         @Override
                         public void onClick(View view) {
                             icon = 4;
+                            Log.d("dd", String.valueOf(icon));
                         }
                     });
                     //증오
@@ -152,6 +159,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                         @Override
                         public void onClick(View view) {
                             icon = 5;
+                            Log.d("dd", String.valueOf(icon));
                         }
                     });
                     //욕망
@@ -159,6 +167,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                         @Override
                         public void onClick(View view) {
                             icon = 6;
+                            Log.d("dd", String.valueOf(icon));
                         }
                     });
 
@@ -178,6 +187,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CalendarViewHo
                             item.setContent(et_content.getText().toString());
                             item.setWriteDate(currentTime);
                             item.setIcon(icon);
+                            Log.d("dd", String.valueOf(icon));
 
                             mTodoItems.add(item);
                             dialog.dismiss();

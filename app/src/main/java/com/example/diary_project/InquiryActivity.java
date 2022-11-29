@@ -25,7 +25,7 @@ public class InquiryActivity extends AppCompatActivity{
     EditText et_content; // 서버로 전송할 데이터 입력상자
     Button btn_ok;
     String str;
-    String addr="ip주소";
+    String addr="192.168.250.237";
     int port = 4455; //포트 번호는 서버측과 똑같이
     String response; //서버 응답
 

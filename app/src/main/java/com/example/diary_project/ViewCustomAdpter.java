@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
     private ArrayList<TodoItem> mTodoItems;
     private Context mContext;
     private DBHepler mDBHelper;
+    int iconNum;
 
 
     public ViewCustomAdpter(ArrayList<TodoItem> mTodoItems, Context mContext) {
@@ -94,7 +97,7 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                     int curPos = getAdapterPosition();      //현재 선택한 리스트 아이템 위치
                     TodoItem todoItem = mTodoItems.get(curPos);  // 선택한 아이템 값들
 
-                    String[] strChoiceItems= {"수정하기","삭제하기","공유하기"};
+                    String[] strChoiceItems= {"수정하기","삭제하기"};
                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                     builder.setTitle("원하는 작업을 선택해 주세요");
                     builder.setItems(strChoiceItems, new DialogInterface.OnClickListener() {
@@ -113,6 +116,74 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                                 et_content.setText(todoItem.getContent());
                                 // 커서를 글자의 마지막으로 이동
                                 et_title.setSelection(et_title.getText().length());
+                                ImageButton imgbtn_pleasure =dialog.findViewById(R.id.imgbtn_pleasure);
+                                ImageButton imgbtn_anger = dialog.findViewById(R.id.imgbtn_anger);
+                                ImageButton imgbtn_sad=dialog.findViewById(R.id.imgbtn_sad);
+                                ImageButton imgbtn_joy= dialog.findViewById(R.id.imgbtn_joy);
+                                ImageButton imgbtn_love=dialog.findViewById(R.id.imgbtn_love);
+                                ImageButton imgbtn_hatred=dialog.findViewById(R.id.imgbtn_hatred);
+                                ImageButton imgbtn_craving=dialog.findViewById(R.id.imgbtn_craving);
+
+
+                                //기쁨이벤트
+                                imgbtn_pleasure.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        iconNum = 0;
+                                        Log.d("dd", String.valueOf(iconNum));
+                                    }
+                                });
+
+                                //화남
+                                imgbtn_anger.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        iconNum = 1;
+                                        Log.d("dd", String.valueOf(iconNum));
+                                    }
+                                });
+
+                                //슬픔
+                                imgbtn_sad.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        iconNum = 2;
+                                        Log.d("dd", String.valueOf(iconNum));
+                                    }
+                                });
+                                //즐거움
+                                imgbtn_joy.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        iconNum = 3;
+                                        Log.d("dd", String.valueOf(iconNum));
+                                    }
+                                });
+                                //사랑
+                                imgbtn_love.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        iconNum = 4;
+                                        Log.d("dd", String.valueOf(iconNum));
+                                    }
+                                });
+                                //증오
+                                imgbtn_hatred.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        iconNum = 5;
+                                        Log.d("dd", String.valueOf(iconNum));
+                                    }
+                                });
+                                //욕망
+                                imgbtn_craving.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        iconNum = 6;
+                                        Log.d("dd", String.valueOf(iconNum));
+                                    }
+                                });
 
                                 btn_ok.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -122,7 +193,7 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                                         String content = et_content.getText().toString();
                                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//현재 시간 월일시 받아오기
                                         String beforeTime = todoItem.getWriteDate();  //이전에 작성한 시간
-                                        int iconNum = todoItem.getIcon();
+
 
                                         mDBHelper.UpdateTodo(title, content, iconNum,currentTime,beforeTime);
 
@@ -149,10 +220,6 @@ public class ViewCustomAdpter extends RecyclerView.Adapter<ViewCustomAdpter.View
                                 mTodoItems.remove(curPos);
                                 notifyItemRemoved(curPos);
                                 Toast.makeText(mContext, "목록이 제거 되었습니다", Toast.LENGTH_SHORT).show();
-
-                            }
-                            //공융하기
-                            else if(position == 2){
 
                             }
                         }
